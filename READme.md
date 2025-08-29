@@ -57,3 +57,68 @@ newDiv.className = "box";
 
 // Step 3: Insert into the DOM
 document.body.appendChild(newDiv);
+3️⃣ What is Event Bubbling and How Does It Work?
+
+🔄 Event Bubbling = When an event occurs on a child element, it automatically bubbles up to its parent, grandparent, and so on.
+
+Example:
+
+<div id="parent">
+  <button id="child">Click Me</button>
+</div>
+
+document.getElementById("child").addEventListener("click", () => {
+  console.log("Button clicked");
+});
+
+document.getElementById("parent").addEventListener("click", () => {
+  console.log("Parent div clicked");
+});
+
+
+👉 Clicking the button triggers both logs.
+
+4️⃣ What is Event Delegation? Why is it Useful?
+
+👨‍👩‍👧 Event Delegation = Attaching one listener to a parent element to handle events for its children (using bubbling).
+
+✨ Benefits:
+
+✅ Fewer event listeners → better performance
+
+✅ Works with dynamically added elements
+
+Example:
+
+document.getElementById("list").addEventListener("click", (event) => {
+  if (event.target.tagName === "LI") {
+    console.log("List item clicked:", event.target.textContent);
+  }
+});
+
+5️⃣ Difference between preventDefault() and stopPropagation()
+
+🚫 preventDefault()
+
+Stops the browser’s default behavior.
+
+Example:
+
+document.querySelector("form").addEventListener("submit", (e) => {
+  e.preventDefault(); // Stops form from submitting
+  console.log("Form submission blocked!");
+});
+
+
+🛑 stopPropagation()
+
+Stops the event from bubbling up to parent elements.
+
+Example:
+
+document.getElementById("child").addEventListener("click", (e) => {
+  e.stopPropagation(); // Prevents parent handler
+  console.log("Only button clicked");
+});
+
+
